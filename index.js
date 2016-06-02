@@ -24,9 +24,17 @@ const getDetails = function (winnerByYear) {
 // the budget into a number, and remove the extra info from
 // the year
 const cleanUp = function (result) {
-	const budget = result.budget ? parsers.parseBudget(result.budget) : null;
-	console.log('parsed budget: ', budget);
+	result.title = parsers.parseTitle(result.title);
+	result.year = parsers.parseYear(result.year);
+	result.budget = parsers.parseBudget(result.budget);
 };
+
+const average = function (arr) {
+	const num = arr.length;
+	const sum = arr.reduce((acc, curr) => acc + curr);
+
+	return Math.round(sum / num);
+}
 
 // the main routine
 fetch(mainURI)
@@ -49,14 +57,12 @@ fetch(mainURI)
 			console.log('Title: ', result.title);
 			console.log('Year: ', result.year);
 			console.log('Budget: ', result.budget);
+			console.log('Formatted: ', parsers.printBudget(result.budget));
 			console.log('-------------------------\n');
+
 		})
-		// const noTitle = results.filter(result => !result.title);
-		// const noYear = results.filter(result => !result.year);
-		// const noBudget = results.filter(result => !result.budget);
-		//
-		// console.log('No Title: ', noTitle);
-		// console.log('No Year: ', noYear);
-		// console.log('No Budget: ', noBudget);
+		const budgets = results.map(result => result.budget);
+		const averageBudget = average(budgets);
+		console.log('Average among all winners: ', parsers.printBudget(averageBudget));
 	})
 	.catch(err => console.log(err));
