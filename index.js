@@ -54,15 +54,21 @@ fetch(mainURI)
 		results.forEach(result => {
 			cleanUp(result);
 
-			console.log('Title: ', result.title);
-			console.log('Year: ', result.year);
-			console.log('Budget: ', result.budget);
-			console.log('Formatted: ', parsers.printBudget(result.budget));
-			console.log('-------------------------\n');
+			console.log('\n');
+			console.log('\t--------------------------------------------------');
+			console.log('\tYear: ', result.year);
+			console.log('\tWinner: ', result.title);
+			console.log('\tBudget: ', parsers.printBudget(result.budget));
+			console.log('\t--------------------------------------------------');
 
 		})
-		const budgets = results.map(result => result.budget);
+		const budgets = results.map(result => result.budget).filter(budget => budget !== null);
 		const averageBudget = average(budgets);
-		console.log('Average among all winners: ', parsers.printBudget(averageBudget));
+
+		console.log('\n');
+		console.log('\t--------------------------------------------------');
+		console.log('\tAverage among all winners: ', parsers.printBudget(averageBudget));
+		console.log('\t--------------------------------------------------');
+		console.log('\n');
 	})
 	.catch(err => console.log(err));
