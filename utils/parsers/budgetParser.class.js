@@ -1,3 +1,5 @@
+'use strict';
+
 const Parser = require('./parser.class');
 const currencyTable = require('../helpers').currencyTable;
 const powerTable = require('../helpers').powerTable;
@@ -13,7 +15,7 @@ BudgetParser.prototype = Object.create(Parser.prototype);
 BudgetParser.prototype.getCurrencyRate = function () {
 	// skip ahead until finding a currency symbol or number
 	this.consumeWhile(char => {
-		return !currencyTable[char] && this.isNotNum(char)
+		return !currencyTable[char] && this.isNotNum(char);
 	});
 
 	let char = this.peek();

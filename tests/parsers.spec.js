@@ -1,3 +1,5 @@
+'use strict';
+
 const expect = require('chai').expect;
 const parsers = require('../utils/parsers');
 
@@ -23,7 +25,7 @@ describe('parser functions', function () {
 			const num = parsers.parseBudget(str);
 
 			expect(num).to.equal(300000);
-		})
+		});
 
 		it('parses numeric comma-separated strings', function () {
 			const str = '$1,433,000';

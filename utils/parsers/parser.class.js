@@ -1,3 +1,5 @@
+'use strict';
+
 const Parser = function (str) {
 	this.str = str;
 	this.ptr = 0;
@@ -33,7 +35,7 @@ Parser.prototype.isNum = function (char) {
 
 Parser.prototype.isNotNum = function (char) {
 	return !Parser.prototype.isNum(char);
-}
+};
 
 Parser.prototype.isLetter = function (char) {
 	return /[a-z]|[A-Z]/.test(char);

@@ -1,3 +1,5 @@
+'use strict';
+
 const fetch = require('node-fetch');
 const mainURI = 'http://oscars.yipitdata.com/';
 const parsers = require('./utils/parsers');
@@ -38,7 +40,7 @@ const average = function (arr) {
 	const sum = arr.reduce((acc, curr) => acc + curr);
 
 	return Math.round(sum / num);
-}
+};
 
 // the main routine
 function main() {
@@ -85,7 +87,7 @@ function main() {
 				console.log('\nRetrying...\n');
 				setTimeout(main, WAIT_TIME);
 			} else {
-				console.log('\nToo many failed attempts, exiting.\n')
+				console.log('\nToo many failed attempts, exiting.\n');
 				process.kill(1);
 			}
 	});

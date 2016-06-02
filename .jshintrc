@@ -1,0 +1,7 @@
+{
+	"esversion": 6,
+
+	"chai"	        : true,
+	"mocha"         : true,
+	"node"          : true
+}
