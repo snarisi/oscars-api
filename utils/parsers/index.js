@@ -32,9 +32,8 @@ function parseBudget(str) {
 
 // prints the budget in a readable, consistent format
 function printBudget(num) {
-	if (num === null) {
-		return null;
-	}
+	if (num === null) return 'Not Available';
+
 	let str = num.toString();
 	let newStr = '';
 	let last = str.length - 1;

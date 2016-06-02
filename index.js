@@ -1,6 +1,10 @@
 const fetch = require('node-fetch');
 const mainURI = 'http://oscars.yipitdata.com/';
 const parsers = require('./utils/parsers');
+const MAX_ATTEMPTS = 3;
+const WAIT_TIME = 5000;
+
+let attempts = 0;
 
 // helper function to fetch the details for a single film
 // and return a js object with the year, title, and budget
@@ -37,38 +41,55 @@ const average = function (arr) {
 }
 
 // the main routine
-fetch(mainURI)
-	.then(res => res.json())
-	.then(body => {
-		const groups = body.results;
-		const winnersByYear = groups.map(group => {
-			const winner = group.films.filter(film => film.Winner)[0];
-			const year = group.year;
-			return { year: year, winner: winner };
-		});
+function main() {
+	attempts++;
 
-		const promises = winnersByYear.map(getDetails);
-		return Promise.all(promises);
-	})
-	.then(results => {
-		results.forEach(result => {
-			cleanUp(result);
+	fetch(mainURI)
+		.then(res => res.json())
+		.then(body => {
+			const groups = body.results;
+			const winnersByYear = groups.map(group => {
+				const winner = group.films.filter(film => film.Winner)[0];
+				const year = group.year;
+				return { year: year, winner: winner };
+			});
+
+			const promises = winnersByYear.map(getDetails);
+			return Promise.all(promises);
+		})
+		.then(results => {
+			results.forEach(result => {
+				cleanUp(result);
+
+				console.log('\n');
+				console.log('\t--------------------------------------------------');
+				console.log('\tYear:   ', result.year);
+				console.log('\tWinner: ', result.title);
+				console.log('\tBudget: ', parsers.printBudget(result.budget));
+				console.log('\t--------------------------------------------------');
+
+			});
+
+			const budgets = results.map(result => result.budget).filter(budget => budget !== null);
+			const averageBudget = average(budgets);
 
 			console.log('\n');
 			console.log('\t--------------------------------------------------');
-			console.log('\tYear: ', result.year);
-			console.log('\tWinner: ', result.title);
-			console.log('\tBudget: ', parsers.printBudget(result.budget));
+			console.log('\tAverage among all winners: ', parsers.printBudget(averageBudget));
 			console.log('\t--------------------------------------------------');
+			console.log('\n');
 
 		})
-		const budgets = results.map(result => result.budget).filter(budget => budget !== null);
-		const averageBudget = average(budgets);
+		.catch(err => {
+			console.log('ERROR: ', err.message);
+			if (attempts < MAX_ATTEMPTS) {
+				console.log('\nRetrying...\n');
+				setTimeout(main, WAIT_TIME);
+			} else {
+				console.log('\nToo many failed attempts, exiting.\n')
+				process.kill(1);
+			}
+	});
+}
 
-		console.log('\n');
-		console.log('\t--------------------------------------------------');
-		console.log('\tAverage among all winners: ', parsers.printBudget(averageBudget));
-		console.log('\t--------------------------------------------------');
-		console.log('\n');
-	})
-	.catch(err => console.log(err));
+main();
