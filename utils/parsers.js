@@ -83,7 +83,7 @@ function parseBudget(str) {
 	consumeWhile(char => !isNum(char));
 
 	// get the numbers
-	const numString = consumeWhile(isNum).replace(',', '');
+	const numString = consumeWhile(isNum).replace(/,/g, '');
 	number = parseFloat(numString, 10);
 
 	// if there's a dash (indicating a range) ignore
@@ -124,7 +124,8 @@ function printBudget(num) {
 }
 
 // for the year just take out white space and any weird
-// wiki notation artifacts (keep the multi-year )
+// wiki notation artifacts (keep them as strings and allow
+// them to represent multiple years)
 function parseYear(str) {
 	let ptr = 0;
 
