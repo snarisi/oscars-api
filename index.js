@@ -62,11 +62,11 @@ function main() {
 				cleanUp(result);
 
 				console.log('\n');
-				console.log('\t--------------------------------------------------');
-				console.log('\tYear:   ', result.year);
-				console.log('\tWinner: ', result.title);
-				console.log('\tBudget: ', parsers.printBudget(result.budget));
-				console.log('\t--------------------------------------------------');
+				console.log('    --------------------------------------------------');
+				console.log('    Year:   ', result.year);
+				console.log('    Winner: ', result.title);
+				console.log('    Budget: ', parsers.printBudget(result.budget));
+				console.log('    --------------------------------------------------');
 
 			});
 
@@ -74,10 +74,9 @@ function main() {
 			const averageBudget = average(budgets);
 
 			console.log('\n');
-			console.log('\t--------------------------------------------------');
-			console.log('\tAverage among all winners: ', parsers.printBudget(averageBudget));
-			console.log('\t--------------------------------------------------');
-			console.log('\n');
+			console.log('    --------------------------------------------------');
+			console.log('    Average among all winners: ', parsers.printBudget(averageBudget));
+			console.log('    --------------------------------------------------');
 
 		})
 		.catch(err => {
