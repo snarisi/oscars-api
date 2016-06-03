@@ -1,6 +1,8 @@
 'use strict';
 
 const fetch = require('node-fetch');
+const logger = require('./utils/logger');
+
 const mainURI = 'http://oscars.yipitdata.com/';
 const parsers = require('./utils/parsers');
 const MAX_ATTEMPTS = 3;
@@ -28,11 +30,25 @@ const getDetails = function (winnerByYear) {
 
 // helper function to clean up the results... i.e., turn
 // the budget into a number, and remove the extra info from
-// the year
+// the year. also will add an entry to the log file for anything
+// that comes back null
 const cleanUp = function (result) {
+	const resultString = JSON.stringify(result, null, 2);
+
 	result.title = parsers.parseTitle(result.title);
+	if (result.title === null) {
+		logger({ message: 'Null value in title field', data: resultString });
+	}
+
 	result.year = parsers.parseYear(result.year);
+	if (result.year === null) {
+		logger({ message: 'Null value in year field', data: resultString });
+	}
+
 	result.budget = parsers.parseBudget(result.budget);
+	if (result.budget === null) {
+		logger({ message: 'Null value in budget field', data: resultString });
+	}
 };
 
 const average = function (arr) {

@@ -1,0 +1,80 @@
+Thu Jun 02 2016 22:25:45 GMT-0400 (EDT):
+Null value in budget field: :
+{
+  "title": "The Broadway Melody",
+  "year": "1928 / 29  (2nd)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:25:45 GMT-0400 (EDT):
+Null value in budget field: :
+{
+  "title": "The Life of Emile Zola",
+  "year": "1937  (10th)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:25:45 GMT-0400 (EDT):
+Null value in budget field: :
+{
+  "title": "Going My Way",
+  "year": "1944 [D]  (17th)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:25:45 GMT-0400 (EDT):
+Null value in budget field: :
+{
+  "title": "All the King's Men",
+  "year": "1949  (22nd)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:25:45 GMT-0400 (EDT):
+Null value in budget field: :
+{
+  "title": "The Greatest Show on Earth",
+  "year": "1952  (25th)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:26:14 GMT-0400 (EDT):
+Null value in budget field:
+{
+  "title": "The Broadway Melody",
+  "year": "1928 / 29  (2nd)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:26:14 GMT-0400 (EDT):
+Null value in budget field:
+{
+  "title": "The Life of Emile Zola",
+  "year": "1937  (10th)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:26:14 GMT-0400 (EDT):
+Null value in budget field:
+{
+  "title": "Going My Way",
+  "year": "1944 [D]  (17th)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:26:14 GMT-0400 (EDT):
+Null value in budget field:
+{
+  "title": "All the King's Men",
+  "year": "1949  (22nd)",
+  "budget": null
+}
+
+Thu Jun 02 2016 22:26:14 GMT-0400 (EDT):
+Null value in budget field:
+{
+  "title": "The Greatest Show on Earth",
+  "year": "1952  (25th)",
+  "budget": null
+}
+

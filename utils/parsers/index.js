@@ -4,6 +4,7 @@ const parser = require('./parser.service');
 const currencyTable = require('../helpers').currencyTable;
 const powerTable = require('../helpers').powerTable;
 const exchangeRateTable = require('../helpers').exchangeRateTable;
+const logger = require('../logger');
 
 module.exports = {
 	// turn the budget into a number, represented in
@@ -49,7 +50,7 @@ module.exports = {
 
 		// if for some reason the answer is NaN, log it and return null
 		if (isNaN(final)) {
-			console.log('Got NaN from budget string: ', str);
+			logger({ message: 'Got NaN from budget string', data: str });
 			return null;
 		}
 
