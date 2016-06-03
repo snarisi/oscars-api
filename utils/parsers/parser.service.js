@@ -80,16 +80,14 @@ const getNextWord = function (str) {
 	return consumeWhile(str, isLetter);
 };
 
-
 // public methods
 module.exports = {
-	// removes wikipedia citation artifacts and
-	// extra parenthical info in the years
+	// removes wikipedia citation artifacts
 	removeNoise: function (str) {
 		return str.replace(/\s*\[.*\]\s*$/, '');
 	},
 
-	// returns an array of all numbers inside the string
+	// returns an array of all numbers extracted from the string
 	getNumbers: function (str) {
 		ptr = 0;
 		const numbers = [];
@@ -100,7 +98,7 @@ module.exports = {
 		return numbers;
 	},
 
-	// returns an array of anything that isn't a letter or number
+	// returns an array of anything that isn't a letter/number/space
 	getSymbols: function (str) {
 		ptr = 0;
 		const symbols = [];
@@ -111,7 +109,7 @@ module.exports = {
 		return symbols;
 	},
 
-	// returns an array of words in the string
+	// returns an array of words extracted from the string
 	getWords: function (str) {
 		ptr = 0;
 		const words = [];
