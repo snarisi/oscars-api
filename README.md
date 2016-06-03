@@ -18,7 +18,7 @@ node main
 
 This app has three main parts:
 
-1. A parsing utility that takes a string and returns all of the numbers, words, and special symbols, which are used to interpret the information in the string and convert it into the right format. There were several ways I thought of to do this, but I tried to do it in a way that would be easy to adjust as new edge cases appear.
+1. A parsing utility that takes a string and returns all of the numbers, words, and special symbols, which are used to interpret the information in the string and convert it into the right format. There were several ways I thought of to do this, but I tried to do it in a way that would be easy to adjust as new edge cases appear. For instance, it handles the common cases like '$500,000' and '$2 million', but also other possibilities I can imagine like 'Approx. $12 million' and '8.2 million US$'.
 
 2. A main routine that makes the API calls and uses the parsing utility to format and print the data. This function is written so if any of the calls fail, it will try again some number of times, with some interval in between.
 
