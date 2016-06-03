@@ -30,7 +30,7 @@ const skipWhiteSpace = function (str) {
 };
 
 const isNum = function (char) {
-	return /[0-9]|\.|,/.test(char);
+	return /[0-9]/.test(char);
 };
 
 const isNotNum = function (char) {
@@ -60,10 +60,12 @@ const getNextNumber = function (str) {
 
 	if (eof(str)) return null;
 
-	while (isNum(peekChar(str))) {
+	let next = peekChar(str);
+	while (isNum(next) || next === '.' || next === ',') {
+		// skip commas, add digits and decimals
 		let char = getChar(str);
-		// skip commas
 		if (char !== ',') numberString += char;
+		next = peekChar(str);
 	}
 	return parseFloat(numberString);
 };

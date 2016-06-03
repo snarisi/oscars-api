@@ -65,6 +65,16 @@ describe('parser functions', function () {
 
 			expect(num).to.equal(8200000);
 		});
+
+		it('can handle other possible edge cases', function () {
+			let str = 'Approx. $12 million';
+			let num = parsers.parseBudget(str);
+			expect(num).to.equal(12000000);
+
+			str = '8.2 million $US';
+			num = parsers.parseBudget(str);
+			expect(num).to.equal(8200000);
+		});
 	});
 
 	describe('printBudget', function () {
