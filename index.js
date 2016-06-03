@@ -28,27 +28,29 @@ const getDetails = function (winnerByYear) {
 		});
 };
 
-// helper function to clean up the results... i.e., turn
-// the budget into a number, and remove the extra info from
-// the year. also will add an entry to the log file for anything
-// that comes back null
-const cleanUp = function (result) {
+// helper function to parse the results into the right format,
+// i.e., turn the budget into a number, and remove the extra
+// info from the year. also will add an entry to the log file
+// for anything that comes back null
+const parse = function (result) {
 	const resultString = JSON.stringify(result, null, 2);
+	const data = {};
 
-	result.title = parsers.parseTitle(result.title);
-	if (result.title === null) {
+	data.title = parsers.parseTitle(result.title);
+	if (data.title === null) {
 		logger({ message: 'Null value in title field', data: resultString });
 	}
 
-	result.year = parsers.parseYear(result.year);
-	if (result.year === null) {
+	data.year = parsers.parseYear(result.year);
+	if (data.year === null) {
 		logger({ message: 'Null value in year field', data: resultString });
 	}
 
-	result.budget = parsers.parseBudget(result.budget);
-	if (result.budget === null) {
+	data.budget = parsers.parseBudget(result.budget);
+	if (data.budget === null) {
 		logger({ message: 'Null value in budget field', data: resultString });
 	}
+	return data;
 };
 
 const average = function (arr) {
@@ -75,9 +77,9 @@ function main() {
 			const promises = winnersByYear.map(getDetails);
 			return Promise.all(promises);
 		})
-		.then(results => {
+		.then(rawResults => {
+			const results = rawResults.map(parse);
 			results.forEach(result => {
-				cleanUp(result);
 
 				console.log('\n');
 				console.log('    --------------------------------------------------');
