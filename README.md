@@ -2,6 +2,12 @@
 
 This needs node and npm to run. I used node 6.2.0, but it should work on 4.0.0 and above.
 
+To clone from github:
+```
+git clone https://github.com/snarisi/oscars-api
+cd oscars-api
+```
+
 To run:
 ```
 npm install
