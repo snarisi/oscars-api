@@ -46,7 +46,7 @@ module.exports = {
 		});
 		if (!power) power = 1;
 
-		final = Math.floor(number * power * exchangeRate);
+		final = Math.round(number * power * exchangeRate);
 
 		// if for some reason the answer is NaN, log it and return null
 		if (isNaN(final)) {

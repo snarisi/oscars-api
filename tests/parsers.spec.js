@@ -42,6 +42,14 @@ describe('parser functions', function () {
 			expect(num).to.equal(12000000);
 		});
 
+		it('parses a string with decimal and words', function () {
+			const str = '$8.2 million';
+			const num = parsers.parseBudget(str);
+
+			expect(num).to.be.a('number');
+			expect(num).to.equal(8200000);
+		});
+
 		it('convers GPB to USD', function () {
 			const pound = '\u00A3';
 			const str = `${pound}12 million`;
@@ -52,10 +60,10 @@ describe('parser functions', function () {
 		});
 
 		it('handles strings with wikipedia citation artifacts', function () {
-			const str = '$103 million [ 6 ] [ 7 ]';
+			const str = '$8.2 million [ 2 ] [ 3 ]';
 			const num = parsers.parseBudget(str);
 
-			expect(num).to.equal(103000000);
+			expect(num).to.equal(8200000);
 		});
 	});
 
