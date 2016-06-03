@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const LOG_PATH = path.join(__dirname, '../../logs');
 const LOG_FILE = path.join(__dirname, '../../logs/logfile');
 
 module.exports = function (options) {
@@ -10,9 +11,16 @@ module.exports = function (options) {
 	const string = `${timestamp}:\n${options.message}:\n${options.data}\n\n`;
 
 	try {
+		fs.statSync(LOG_PATH);
+	} catch (e) {
+		fs.mkdirSync(LOG_PATH);
+	}
+
+	try {
 		fs.statSync(LOG_FILE);
 	} catch (e) {
 		fs.writeFileSync(LOG_FILE, '');
 	}
+
 	fs.appendFileSync(LOG_FILE, string);
 };
