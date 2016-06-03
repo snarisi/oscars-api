@@ -18,4 +18,4 @@ This app has three main parts:
 
 3. A logger utility that saves a message to logfile whenever something unexpected happens that shouldn't kill the whole process (for example, when a null value is returned for one of the fields).
 
-For the app itself, the only external library I used was the node-fetch package (version 1.5.3), which provides a nicer way of making http requests than node's built-in module. For testing, I used mocha (version 2.5.3) and chai (version 3.5.0).
+For the app itself, the only external library I used was the node-fetch package (version 1.5.3), which provides a nicer way of making http requests than node's built-in module. For testing, I used mocha (version 2.5.3) and chai (version 3.5.0). The tests I wrote were for the parsing utility, and testing there was pretty critical because I heavily refactored that code. To run the tests: `npm test`
